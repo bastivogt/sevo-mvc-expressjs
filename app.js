@@ -7,6 +7,7 @@ require("./routes");
 const RoutesManager = require("./sevo/routes/RoutesManager");
 const logger = require("./src/middlewares/logger");
 const PageController = require("./src/controllers/PageController");
+const shortcuts = require("./src/helpers/shortcuts");
 
 
 
@@ -39,7 +40,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(RoutesManager.getRouter());
 console.log(RoutesManager.getRouter());
 
-//app.use("/", PageController.page404);
+
+function test() {
+    return "TEST";
+}
+// locals
+app.locals.route = shortcuts.getRoutePattern;
 
 
 app.listen(port, () => {
