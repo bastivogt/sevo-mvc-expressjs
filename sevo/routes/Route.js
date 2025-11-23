@@ -13,7 +13,7 @@ class Route {
     }
 
     toString() {
-        return `Route(method: ${this.method}, pattern: ${this.pattern}, handler: ${this.handle}, name: ${this.name})`;
+        return `Route(method: ${this.method}, pattern: ${this.pattern}, handler: ${this.handler}, name: ${this.name})`;
     }
 
 }

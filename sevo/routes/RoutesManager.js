@@ -2,7 +2,7 @@ const express = require("express");
 
 const Route = require("./Route");
 
-class RouterManager {
+class RoutesManager {
     static _instance = null;
     _routes;
     _router;
@@ -21,9 +21,9 @@ class RouterManager {
     }
 
     
-    hasRoute(route) {
+    hasRoute(name) {
         for(let r of this._routes) {
-            if(r.pattern === route.pattern && r.method === method && r.name === route.name) {
+            if(r.name === name) {
                 return true;
             }
         }
@@ -31,7 +31,7 @@ class RouterManager {
     }
 
     addRoute(route) {
-        if(!this.hasRoute(route)) {
+        if(!this.hasRoute(route.name)) {
             this._routes.push(route);
             return true;
         }
@@ -39,21 +39,41 @@ class RouterManager {
     }
 
     removeRoute(name) {
-        this._routes = this._routes.filter((route) => {
-            if(route.name !== name) {
-                return route;
-            }
-        });
+        if(this.hasRoute(name)){
+            this._routes = this._routes.filter((route) => {
+                if(route.name !== name) {
+                    return route;
+                }
+            });
+            return true;
+
+        }
+        return false;
     }
 
     getRoute(name) {
-        return this._routes.find((route) => {
-            return route.name === name;
-        });
+        if(this.hasRoute(name)) {
+            return this._routes.find((route) => {
+                return route.name === name;
+            });
+
+        }
+        return false;
     }
 
-    getRoutePattern(name) {
-        return this.getRoute(name).pattern;
+    getRoutePattern(name, params = null) {
+        if(this.hasRoute(name)) {
+            const route = this.getRoute(name);
+            const pattern = route.pattern;
+            let path = pattern;
+            if(params === null) {
+                return path;
+            }
+            for (let p in params) {
+                path = path.replaceAll(`:${p}`, params[p]);
+            }
+            return path;
+        }
     }
 
 
@@ -63,7 +83,6 @@ class RouterManager {
 
     _buildRouter() {
         for(let route of this._routes) {
-            console.log("route", route);
             this._router[route.method](route.pattern, route.handler);
         }
     }
@@ -81,4 +100,4 @@ class RouterManager {
     }
 }
 
-module.exports = RouterManager.getInstance();
+module.exports = RoutesManager.getInstance();

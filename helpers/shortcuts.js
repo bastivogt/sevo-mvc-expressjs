@@ -1,7 +1,7 @@
-const RouterManager = require("../sevo/routes/RouterManager");
+const RouterManager = require("../sevo/routes/RoutesManager");
 
-function getUrl(name) {
-    return RouterManager.getRoutePattern(name);
+function getUrl(name, params = null) {
+    return RouterManager.getRoutePattern(name, params);
 }
 
 module.exports = {

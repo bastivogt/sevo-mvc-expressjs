@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 
 
 require("./routes");
-const RouterManager = require("./sevo/routes/RouterManager");
+const RoutesManager = require("./sevo/routes/RoutesManager");
 
 
 
@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //app.use(routes);
 // const RouterManager = require("./routes");
 
-app.use(RouterManager.getRouter());
+app.use(RoutesManager.getRouter());
 
 
 app.listen(port, () => {
