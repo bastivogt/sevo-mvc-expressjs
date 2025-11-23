@@ -1,5 +1,5 @@
-const BaseController = require("../../../sevo/controllers/BaseController");
-const RoutesManager = require("../../../sevo/routes/RoutesManager");
+const BaseController = require("../../sevo/controllers/BaseController");
+const RoutesManager = require("../../sevo/routes/RoutesManager");
 
 class PersonController extends BaseController {
     index(req, res) {
@@ -11,7 +11,6 @@ class PersonController extends BaseController {
     }
 
     create(req, res) {
-        console.log(RoutesManager.getRoutePattern("pageApp:about"));
         return res.send("<form action='/person/store' method='POST'><input type='text' name='name' /><button>Send</button></button></form>");
     }
 
@@ -20,7 +19,7 @@ class PersonController extends BaseController {
         
         // return res.redirect(RouterManager.getRoutePattern("pageApp:about"));
         //return res.send("PersonController.store");
-        return res.redirect(RoutesManager.getRoutePattern("personApp:detail", {id: 2}));
+        return res.redirect(RoutesManager.getRoutePattern("person:detail", {id: 2}));
     }
 }
 

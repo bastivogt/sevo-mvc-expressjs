@@ -2,18 +2,22 @@
 const RoutesManager = require("./sevo/routes/RoutesManager")
 const Route = require("./sevo/routes/Route");
 
-const PersonController = require("./src/personApp/controllers/PersonController");
-const PageController = require("./src/pageApp/controllers/PageController");
+const PersonController = require("./src/controllers/PersonController");
+const PageController = require("./src/controllers/PageController");
 
 
 
+// page
+RoutesManager.addRoute(new Route(Route.GET, "/", PageController.index, "page:index"));
+RoutesManager.addRoute(new Route(Route.GET, "/about", PageController.about, "page:about"));
 
-RoutesManager.addRoute(new Route(Route.GET, "/", PageController.index, "pageApp:index"));
-RoutesManager.addRoute(new Route(Route.GET, "/about", PageController.about, "pageApp:about"));
+// person
+RoutesManager.addRoute(new Route(Route.GET, "/person", PersonController.index, "person:index"));
+RoutesManager.addRoute(new Route(Route.GET, "/person/create", PersonController.create, "person:create"));
+RoutesManager.addRoute(new Route(Route.POST, "/person/store", PersonController.store, "person:store"));
+RoutesManager.addRoute(new Route(Route.GET, "/person/:id", PersonController.detail, "person:detail"));
 
-RoutesManager.addRoute(new Route(Route.GET, "/person", PersonController.index, "personeApp:index"));
-RoutesManager.addRoute(new Route(Route.GET, "/person/create", PersonController.create, "personApp:create"));
-RoutesManager.addRoute(new Route(Route.POST, "/person/store", PersonController.store, "personApp:store"));
-RoutesManager.addRoute(new Route(Route.GET, "/person/:id", PersonController.detail, "personApp:detail"));
+// 404
+RoutesManager.addRoute(new Route(Route.USE, "/", PageController.page404, "page:404"));
 
 //module.exports = RouterManager;

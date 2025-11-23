@@ -4,6 +4,7 @@ class Route {
     static PATCH = "patch";
     static PUT = "put";
     static DELETE = "delete";
+    static USE = "use";
 
     constructor(method, pattern, handler, name) {
         this.method = method;

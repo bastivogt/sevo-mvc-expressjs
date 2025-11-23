@@ -9,7 +9,7 @@ class RoutesManager {
 
     constructor() {
         this._routes = [];
-        this._router = express.Router();
+        
 
     }
 
@@ -82,6 +82,7 @@ class RoutesManager {
     }
 
     _buildRouter() {
+        this._router = express.Router();
         for(let route of this._routes) {
             this._router[route.method](route.pattern, route.handler);
         }
