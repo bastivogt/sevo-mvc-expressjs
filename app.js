@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 
 
-require("./routes");
+require("./src/routes");
 const RoutesManager = require("./sevo/routes/RoutesManager");
 const logger = require("./src/middlewares/logger");
 const PageController = require("./src/controllers/PageController");

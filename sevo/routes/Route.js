@@ -5,8 +5,9 @@ class Route {
     static PUT = "put";
     static DELETE = "delete";
     static USE = "use";
+    static ALL = "all";
 
-    constructor(method, pattern, handler, name) {
+    constructor(method, pattern, handler, name = null) {
         this.method = method;
         this.pattern = pattern;
         this.handler = handler;
