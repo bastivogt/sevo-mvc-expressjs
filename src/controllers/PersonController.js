@@ -10,7 +10,7 @@ const PersonController =  {
     },
 
     create(req, res) {
-        return res.send("<form action='/person/store' method='POST'><input type='text' name='name' /><button>Send</button></button></form>");
+        return res.send(`<form action="${RoutesManager.getRoutePattern('admin:person:store')}" method='POST'><input type='text' name='name' /><button>Send</button></button></form>`);
     },
 
     store(req, res) {
@@ -18,7 +18,7 @@ const PersonController =  {
         
         // return res.redirect(RouterManager.getRoutePattern("pageApp:about"));
         //return res.send("PersonController.store");
-        return res.redirect(RoutesManager.getRoutePattern("person:detail", {id: 2}));
+        return res.redirect(RoutesManager.getRoutePattern("admin:person:detail", {id: 2}));
     }
 }
 

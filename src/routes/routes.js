@@ -1,9 +1,9 @@
 
-const RoutesManager = require("../sevo/routes/RoutesManager")
-const Route = require("../sevo/routes/Route");
+const RoutesManager = require("../../sevo/routes/RoutesManager")
+const Route = require("../../sevo/routes/Route");
 
-const PersonController = require("./controllers/PersonController");
-const PageController = require("./controllers/PageController");
+const PersonController = require("../controllers/PersonController");
+const PageController = require("../controllers/PageController");
 
 
 
