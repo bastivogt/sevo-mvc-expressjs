@@ -1,8 +1,18 @@
 const RoutesManager = require("../../sevo/routes/RoutesManager");
+const PersonModel = require("../models/PersonModel");
 
 const PersonController =  {
-    index(req, res) {
-        return res.send("PersonController.index");
+    async index(req, res) {
+        const people = await PersonModel.findAll({
+            where: {
+                published: true
+            },
+            order: [["updatedAt", "DESC"]]
+        });
+        res.render("person/index", {
+            title: "People",
+            people: people
+        })
     },
 
     detail(req, res) {

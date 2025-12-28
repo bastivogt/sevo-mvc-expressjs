@@ -1,0 +1,13 @@
+<%- include("../partials/_header") %>
+
+<h1><%- locals.title %></h1>
+
+<ul>
+    <% for(let person of locals.people) { %>
+        <li>
+            <a href="#"><%= person.firstname %></a>
+        </li>
+    <% } %>
+</ul>
+
+<%- include("../partials/_footer") %>
